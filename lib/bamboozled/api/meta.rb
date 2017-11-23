@@ -4,8 +4,7 @@ module Bamboozled
 
       [:field, :table, :list, :user].each do |action|
         define_method("#{action}s") do
-          result = request(:get, "meta/#{action}s")
-          result["#{action}s".to_sym][action]
+          request(:get, "meta/#{action}s")
         end
       end
 
