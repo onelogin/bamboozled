@@ -39,6 +39,10 @@ module Bamboozled
         end
       end
 
+      def table(table_name, employee_id)
+        request(:get, "employees/#{employee_id}/tables/#{table_name}")
+      end
+
       def time_off_estimate(employee_id, end_date)
         end_date = end_date.strftime("%F") unless end_date.is_a?(String)
         request(:get, "employees/#{employee_id}/time_off/calculator?end=#{end_date}")
