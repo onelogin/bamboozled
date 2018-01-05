@@ -74,6 +74,9 @@ client.employee.all(:all) # Gets all fields for all employees
 client.employee.all(["hireDate", "displayName"])
 client.employee.all("hireDate,displayName")
 
+# Returns ids of all employees (active and inactive)
+client.employee.ids
+
 # Get the employee records which have changed since a given date
 client.employee.last_changed("2015-01-01T00:00:00-08:00", :updated)
 client.employee.last_changed("2015-01-01T00:00:00-08:00", :inserted)
