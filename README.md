@@ -74,9 +74,6 @@ client.employee.all(:all) # Gets all fields for all employees
 client.employee.all(["hireDate", "displayName"])
 client.employee.all("hireDate,displayName")
 
-# Returns ids of all employees (active and inactive)
-client.employee.ids
-
 # Get the employee records which have changed since a given date
 client.employee.last_changed("2015-01-01T00:00:00-08:00", :updated)
 client.employee.last_changed("2015-01-01T00:00:00-08:00", :inserted)
@@ -127,6 +124,10 @@ client.time_off.whos_out(Time.now, "2014-12-31")
 ```ruby
 # Find a report by its number
 client.report.find(report_number, format = "JSON", fd = true)
+
+# Get custom report
+
+client.report.custom(['id', 'firstName', 'lastName'])
 ```
 
 ### Metadata

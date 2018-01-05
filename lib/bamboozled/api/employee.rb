@@ -89,16 +89,6 @@ module Bamboozled
         request(:post, "employees/#{bamboo_id}", options)
       end
 
-      def ids
-        report_body = '<report></report>'
-
-        response = request(:post, 'reports/custom', body: report_body)
-
-        response['employees'].map do |employee|
-          employee['id']
-        end
-      end
-
       private
 
       def generate_xml(kind, details)

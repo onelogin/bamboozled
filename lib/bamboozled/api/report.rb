@@ -6,10 +6,24 @@ module Bamboozled
         request(:get, "reports/#{number}?format=#{format.upcase}&fd=#{fd.yesno}")
       end
 
-      # TODO - Implement custom reports
-      # def custom(options, format = 'JSON')
-      #   request(:post, "reports/custom?format=#{format.upcase}", data_should_go_here)
-      # end
+
+      def custom(fields=['id'])
+        body = build_fields_xml(fields)
+        puts body
+        request(:post, 'reports/custom', body: body)
+      end
+
+
+      private
+
+      def build_fields_xml(fields)
+        body = '<report><fields>'
+        fields.each  do |field|
+          body << "<field id='#{field}' />"
+        end
+
+        body << '</fields></report>'
+      end
     end
   end
 end
