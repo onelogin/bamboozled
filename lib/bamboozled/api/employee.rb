@@ -3,7 +3,7 @@ module Bamboozled
     class Employee < Base
 
       def all(fields = nil)
-        response = request(:get, "employees/directory")
+        response = request(:get, "employees/directory?fields=(")
 
         if fields.nil? || fields == :default
           Array(response['employees'])
@@ -52,6 +52,7 @@ module Bamboozled
         %w(address1 address2 age bestEmail birthday city country dateOfBirth department division eeo employeeNumber employmentHistoryStatus ethnicity exempt firstName flsaCode fullName1 fullName2 fullName3 fullName4 fullName5 displayName gender hireDate homeEmail homePhone id jobTitle lastChanged lastName location maritalStatus middleName mobilePhone nickname payChangeReason payGroup payGroupId payRate payRateEffectiveDate payType ssn sin state stateCode status supervisor supervisorId supervisorEId terminationDate workEmail workPhone workPhonePlusExtension workPhoneExtension zipcode photoUploaded rehireDate standardHoursPerWeek bonusDate bonusAmount bonusReason bonusComment commissionDate commisionDate commissionAmount commissionComment).join(',')
       end
 
+
       def photo_binary(employee_id)
         request(:get, "employees/#{employee_id}/photo/small")
       end
@@ -68,14 +69,21 @@ module Bamboozled
       end
 
       def add(employee_details)
-        details = generate_xml(employee_details)
+        details = generate_xml('employee', employee_details)
         options = {body: details}
 
         request(:post, "employees/", options)
       end
 
+      def add_row(table_name, employee_id, data)
+        details = generate_xml('row', data)
+        options = {body: details}
+
+        request(:post, "employees/#{employee_id}/tables/#{table_name}", options)
+      end
+
       def update(bamboo_id, employee_details)
-        details = generate_xml(employee_details)
+        details = generate_xml('employee', employee_details)
         options = { body: details }
 
         request(:post, "employees/#{bamboo_id}", options)
@@ -83,11 +91,11 @@ module Bamboozled
 
       private
 
-      def generate_xml(employee_details)
+      def generate_xml(kind, details)
         "".tap do |xml|
-          xml << "<employee>"
-          employee_details.each { |k, v| xml << "<field id='#{k}'>#{v}</field>" }
-          xml << "</employee>"
+          xml << "<#{kind}>"
+          details.each { |k, v| xml << "<field id='#{k}'>#{v}</field>" }
+          xml << "</#{kind}>"
         end
       end
     end
