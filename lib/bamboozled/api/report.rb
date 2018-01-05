@@ -9,7 +9,6 @@ module Bamboozled
 
       def custom(fields=['id'])
         body = build_fields_xml(fields)
-        puts body
         request(:post, 'reports/custom', body: body)
       end
 
