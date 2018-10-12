@@ -9,7 +9,7 @@ module Bamboozled
       end
 
       def tables
-        request(:get, 'meta/tables')[:tables][:table]
+        request(:get, 'meta/tables', headers: {"Accept" => "application/xml"})[:tables][:table]
       end
     end
   end
