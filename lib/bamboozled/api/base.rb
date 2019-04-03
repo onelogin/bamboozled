@@ -29,7 +29,7 @@ module Bamboozled
             }.update(options[:headers] || {})
           }
 
-          response = HTTParty.send(method, "#{path_prefix}#{path}", httparty_options)
+          response = HTTParty.send(method, URI.escape("#{path_prefix}#{path}"), httparty_options)
           params[:response] = response.inspect.to_s
 
           case response.code
