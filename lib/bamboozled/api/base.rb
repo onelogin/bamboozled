@@ -60,7 +60,7 @@ module Bamboozled
           when 502
             raise Bamboozled::GatewayError.new(response, params, 'The load balancer or web server had trouble connecting to the Bamboo app. Please try the request again.')
           when 503
-            raise Bamboozled::ServiceUnavailable.new(response, params, 'The service is temporarily unavailable. Please try the request again.')
+            raise Bamboozled::ServiceUnavailable.new(response, params, 'The BambooHR directory is refusing this request due to rate limiting. Please try again later.')
           else
             raise Bamboozled::InformBamboo.new(response, params, 'An error occurred that we do not now how to handle. Please contact BambooHR.')
           end
