@@ -26,5 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock", "~> 1.20"
 
   spec.add_dependency "httparty", "~> 0.13"
-  spec.add_json", ">= 1.8", "< 3"
+  spec.add_json", "< 3.0"
 end
