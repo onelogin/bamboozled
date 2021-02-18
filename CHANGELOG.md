@@ -21,6 +21,12 @@
 
 * Added missing documentation for `Employee#add`. ([@mjording][])
 
+## 0.1.1 (2021-03-21)
+
+### Bug Fixes
+
+* Added missing field `supervisorEmail`
+
 [@markrickert]: https://github.com/markrickert
 [@enriikke]: https://github.com/Enriikke
 [@kylefdoherty]: https://github.com/kylefdoherty
