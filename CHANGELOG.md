@@ -27,7 +27,8 @@
 
 * Added missing field `supervisorEmail`
 
-[@markrickert]: https://github.com/markrickert
-[@enriikke]: https://github.com/Enriikke
-[@kylefdoherty]: https://github.com/kylefdoherty
-[@mjording]: https://github.com/mjording
+## 0.1.2 (2021-11-18)
+
+### Upgrading gems
+
+* adding gem dependency for json for higher than 2.3
